@@ -1,0 +1,27 @@
+honey
+qUxcgR*yXWKrrwjT04*9
+
+repocket
+Z4KkFsOKy!YLaryks1p@
+
+traffic
+*cqR!8FkyQn0N^gSK21y
+rtSg6wb0DGaFeIwWl3sAOfkHeWJGXhm/Qp4LqpBQD6Q=
+
+
+packetstream
+iab^#sz7HpSN5DR0#APX
+ZXNkaWNoaToxOTY4Mjcw (comprobar si da otro)
+
+externomel-tecnico3
+aa0279810568
+
+
+
+
+
+select codigo,credito as limite,credito_cli(codigo) as credito
+from clientes_cre
+where credito_cli(codigo) > credito
+
+

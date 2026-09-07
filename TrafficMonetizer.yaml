@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  traffmonetizer:
+    image: traffmonetizer/cli_v2
+    container_name: traffmonetizer
+    restart: always
+    command: start accept --token TuTOKEN

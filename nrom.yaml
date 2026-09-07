@@ -1,0 +1,46 @@
+volumes:
+  mysql_data:
+  romm_redis_data:
+
+services:
+  romm:
+    image: rommapp/romm:latest
+    container_name: romm
+    restart: unless-stopped
+    environment:
+      - DB_HOST=romm-db
+      - DB_NAME=romm
+      - DB_USER=romm-user
+      - DB_PASSWD=mi_contrasena_segura_123
+      - ROMM_AUTH_SECRET_KEY=clave_secreta_jwt_muy_larga_123456789
+      - HASHEOUS_API_ENABLED=true
+    volumes:
+      - /vol1/1000/Roms/config:/romm/config
+      - /vol1/1000/Roms/library:/romm/library
+      - /vol1/1000/Roms/resources:/romm/resources
+      - romm_redis_data:/redis-data
+    ports:
+      - "8888:8080"
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+
+  romm-db:
+    image: mariadb:latest
+    container_name: romm-db
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_password_super_seguro
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+      - MARIADB_PASSWORD=mi_contrasena_segura_123
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5

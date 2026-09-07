@@ -1,0 +1,11 @@
+services:
+  motioneye:
+    image: ccrisan/motioneye:master-amd64
+    container_name: motioneye
+    ports:
+      - "8765:8765"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /vol1/1000/Docker/DVR/config:/etc/motioneye
+      - /vol1/1000/Videovigilancia:/var/lib/motioneye
+    restart: unless-stopped

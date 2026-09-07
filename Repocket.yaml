@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  repocket:
+    image: repocket/repocket:latest
+    container_name: repocket
+    restart: always
+    environment:
+      - RP_EMAIL=tu email
+      - RP_API_KEY=tu api key

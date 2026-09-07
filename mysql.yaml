@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mariadb:latest
+    container_name: mysql_fygo
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: contraseña_root
+      MYSQL_DATABASE: nombre_base_datos
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Volume 1/docker/mysql:/var/lib/mysql

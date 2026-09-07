@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  honeygain:
+    image: honeygain/honeygain:latest
+    container_name: honeygain
+    restart: always
+    command: -tou-accept -email tu_correo -pass tu_contrasela -device NAS

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  cloudflare-ddns:
+    build: .
+    container_name: cloudflare-ddns
+    restart: unless-stopped
+    environment:
+      - CF_API_TOKEN=tu api token
+      - CF_ZONE_ID=tu zone id
+      - CF_SUBDOMAIN=tu dominio
+      - CF_PROXIED=false
+      - CHECK_INTERVAL_MINUTES=5
+    volumes:
+      - ./data:/data
