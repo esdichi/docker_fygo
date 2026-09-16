@@ -1,0 +1,21 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    environment:
+      - WEBSOCKET_ENABLED=true  # Notificaciones en tiempo real en la app móvil
+    volumes:
+      - ./vaultwarden/vw-data:/data
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: always
+    ports:
+      - "80:80"     # Reto HTTP de Let's Encrypt
+      - "443:443"   # Tráfico seguro HTTPS
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/caddy_data:/data
+      - ./caddy/caddy_config:/config
